@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>der2gamer</title>
+    <style>
+        /* Allgemeine Stile für Body und Schriftarten */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a; /* Dunkler Basis-Hintergrund */
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Oben ausgerichtet, damit Scrollen gut aussieht */
+            min-height: 100vh;
+            overflow-y: auto; /* Erlaubt vertikales Scrollen bei Bedarf */
+            position: relative;
+            padding: 40px 20px; /* Abstand oben/unten und seitlich */
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        /* Verbessertes Gold-Design als Hintergrundelemente */
+        .gold-element {
+            position: fixed;
+            opacity: 0.35; /* Etwas stärkeres Gold */
+            filter: blur(60px); /* Weicherer, ausgedehnterer Glanz */
+            background: radial-gradient(circle at center, rgba(255, 223, 0, 0.8), rgba(218, 165, 32, 0.6), transparent 70%); /* Intensiverer Gold-Farbverlauf */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .gold-element-1 {
+            width: 400px;
+            height: 400px;
+            top: -150px;
+            left: -150px;
+            animation: moveGold1 18s infinite alternate ease-in-out;
+        }
+
+        .gold-element-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -200px;
+            right: -200px;
+            animation: moveGold2 22s infinite alternate ease-in-out;
+        }
+
+        .gold-element-3 {
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            right: -100px;
+            animation: moveGold3 16s infinite alternate ease-in-out;
+        }
+
+        .gold-element-4 { /* Zusätzliches Gold-Element */
+            width: 350px;
+            height: 350px;
+            bottom: 10%;
+            left: -120px;
+            animation: moveGold4 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes moveGold1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(70px, 70px) scale(1.05); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes moveGold2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-80px, -80px) scale(1.08); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes moveGold3 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 50px) scale(1.03); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes moveGold4 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, -60px) scale(1.06); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Haupt-Container für den Inhalt */
+        .main-content-wrapper {
+            width: 100%;
+            max-width: 800px; /* Breiterer Hauptbereich */
+            margin: auto; /* Zentriert horizontal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 1; /* Über den Gold-Elementen */
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.75); /* Etwas dunklerer, leicht transparenter Container */
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); /* Stärkerer Schatten */
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 30px; /* Abstand zum nächsten Abschnitt */
+            border: 1px solid rgba(255, 215, 0, 0.3); /* Leichte goldene Umrandung */
+        }
+
+        .profile-picture {
+            width: 180px; /* Größeres Profilbild */
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 7px solid #FFD700; /* Dickerer goldener Rahmen */
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.9); /* Intensiverer goldener Glanz */
+        }
+
+        h1 {
+            font-size: 4em; /* Größerer Titel */
+            margin-bottom: 20px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 223, 0, 1); /* Stärkerer Gold-Textschatten */
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4em; /* Untertitel-Stil */
+            margin-bottom: 40px;
+            color: #e0e0e0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Social Buttons nebeneinander */
+        .social-buttons {
+            display: flex;
+            flex-direction: row; /* Buttons nebeneinander */
+            justify-content: center; /* Zentriert die Buttons */
+            gap: 20px; /* Abstand zwischen den Buttons */
+            margin-top: 40px;
+            flex-wrap: wrap; /* Erlaubt Umbruch auf kleineren Bildschirmen */
+        }
+
+        .social-button {
+            display: flex; /* Flexbox für Icon und Text */
+            align-items: center;
+            justify-content: center;
+            width: auto; /* Automatische Breite basierend auf Inhalt */
+            min-width: 180px; /* Mindestbreite für einheitliches Aussehen */
+            height: 65px; /* Höhe angepasst */
+            padding: 0 25px; /* Horizontaler Abstand */
+            background: linear-gradient(45deg, #DAA520, #FFD700);
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 15px; /* Etwas abgerundetere Ecken */
+            font-size: 1.1em; /* Schriftgröße für den Text */
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+            border: none;
+            cursor: pointer;
+            gap: 12px; /* Abstand zwischen Icon und Text */
+        }
+
+        .social-button:hover {
+            transform: translateY(-7px) scale(1.05); /* Stärkerer Hover-Effekt */
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.9);
+            background: linear-gradient(45deg, #FFD700, #DAA520);
+        }
+
+        .social-button i {
+            font-size: 1.8em; /* Größe des Icons */
+            margin: 0;
+        }
+
+        .info-text-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 35px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .info-text-section h2 {
+            color: #FFD700;
+            text-align: center;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        .info-text-section p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        /* YouTube Video Container */
+        .youtube-section {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 35px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+        }
+
+        .youtube-section h2 {
+            color: #FFD700;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Seitenverhältnis (Höhe / Breite * 100) */
+            height: 0;
+            overflow: hidden;
+            margin: 0 auto; /* Zentrieren */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            background-color: #000; /* Schwarzer Hintergrund für den Player */
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Login / Registrierungsbereich */
+        .auth-section {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffffff;
+        }
+
+        .auth-section h2 {
+            color: #FFD700;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 400px;
+            margin: 0 auto 30px auto;
+        }
+
+        .auth-form input[type="text"],
+        .auth-form input[type="password"] {
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #FFD700;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font-size: 1.1em;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .auth-form input[type="text"]:focus,
+        .auth-form input[type="password"]:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .auth-form button {
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #DAA520, #FFD700);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .auth-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.7);
+            background: linear-gradient(45deg, #FFD700, #DAA520);
+        }
+
+        .auth-message {
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #FFD700;
+            text-align: center;
+        }
+
+        .toggle-auth {
+            margin-top: 25px;
+            font-size: 1em;
+            color: #e0e0e0;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .toggle-auth:hover {
+            color: #FFD700;
+        }
+
+        .logged-in-section {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .logged-in-section h2 {
+            color: #FFD700;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .logged-in-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .logged-in-section button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #DAA520, #FFD700);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .logged-in-section button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.7);
+            background: linear-gradient(45deg, #FFD700, #DAA520);
+        }
+
+
+        /* FontAwesome Icons */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        /* Media Queries für Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            .container, .info-text-section, .auth-section, .logged-in-section, .youtube-section {
+                padding: 30px 30px;
+            }
+            h1 {
+                font-size: 3em;
+            }
+            .subtitle {
+                font-size: 1.2em;
+            }
+            .profile-picture {
+                width: 140px;
+                height: 140px;
+            }
+            .social-buttons {
+                gap: 15px;
+            }
+            .social-button {
+                width: 60px; /* Zurück zu quadratischen Buttons */
+                height: 60px;
+                font-size: 1.5em; /* Icongröße angepasst */
+                border-radius: 12px;
+                min-width: 0; /* Mindestbreite zurücksetzen */
+                padding: 0; /* Padding zurücksetzen */
+                gap: 0; /* Abstand zurücksetzen */
+            }
+            /* Text in den Buttons auf kleinen Bildschirmen ausblenden */
+            .social-button span {
+                display: none;
+            }
+
+            .info-text-section h2, .auth-section h2, .logged-in-section h2, .youtube-section h2 {
+                font-size: 2em;
+            }
+            .info-text-section p, .auth-form input, .auth-message, .toggle-auth {
+                font-size: 1em;
+            }
+            .auth-form button, .logged-in-section button {
+                font-size: 1.1em;
+                padding: 12px 20px;
+            }
+            .gold-element-1, .gold-element-2, .gold-element-3, .gold-element-4 {
+                filter: blur(40px);
+                opacity: 0.25;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2em;
+                letter-spacing: 1px;
+            }
+            .subtitle {
+                font-size: 1em;
+                margin-bottom: 30px;
+            }
+            .profile-picture {
+                width: 110px;
+                height: 110px;
+                border-width: 4px;
+                margin-bottom: 20px;
+            }
+            .social-buttons {
+                gap: 10px;
+            }
+            .social-button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3em;
+                border-radius: 10px;
+            }
+            .container, .info-text-section, .auth-section, .logged-in-section, .youtube-section {
+                padding: 25px 20px;
+            }
+            .info-text-section h2, .auth-section h2, .logged-in-section h2, .youtube-section h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            .info-text-section p {
+                font-size: 0.95em;
+            }
+            .auth-form input {
+                padding: 12px 15px;
+                font-size: 0.95em;
+            }
+            .auth-form button, .logged-in-section button {
+                font-size: 1em;
+                padding: 10px 15px;
+            }
+            .toggle-auth {
+                font-size: 0.9em;
+            }
+            .gold-element {
+                display: none; /* Auf sehr kleinen Bildschirmen können die Gold-Elemente entfernt werden */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Gold-Hintergrundelemente -->
+    <div class="gold-element gold-element-1"></div>
+    <div class="gold-element gold-element-2"></div>
+    <div class="gold-element gold-element-3"></div>
+    <div class="gold-element gold-element-4"></div>
+
+    <div class="main-content-wrapper">
+        <!-- Hauptinhaltsbereich -->
+        <div class="container">
+            <img src="img/Screenshot_20250729_231753_ChatGPT.jpg" alt="Der2Gamer Profilbild" class="profile-picture">
+            <h1>der2gamer</h1>
+            <p class="subtitle">Tauche ein in die Welt des Gamings mit spannenden Videos, Livestreams und mehr. Verpasse keine Neuigkeiten und sei immer einen Klick voraus!</p>
+
+            <div class="social-buttons">
+                <a href="https://www.youtube.com/@der2gamer" target="_blank" class="social-button" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                    <span>YouTube</span>
+                </a>
+                <a href="https://www.instagram.com/der2gamer/" target="_blank" class="social-button" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.tiktok.com/@der2gamer" target="_blank" class="social-button" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                    <span>TikTok</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Info-Text Bereich -->
+        <div class="info-text-section">
+            <h2>Über @der2gamer</h2>
+            <p>
+                Hallo Leute, hier ist @der2gamer! 
+                Ich möchte euch kurz darüber informieren, dass ich insgesamt drei Kanäle betreibe.
+                Jeder Kanal hat sein eigenes spezielles Content-Format, also solltet ihr unbedingt
+                alle drei abchecken, damit ihr kein Video verpasst.  
+            </p>
+            <p>
+                Es ist super wichtig, dass ihr regelmäßig vorbeischaut und die Kanäle abonniert,
+                damit ihr immer auf dem neuesten Stand seid. Eure Unterstützung bedeutet mir viel, 
+                und nur so kann ich weiterhin coole Inhalte für euch produzieren. 
+            </p>
+            <p>
+                Vielen Dank fürs Reinschauen und viel Spaß auf meinen Kanälen!  
+                Euer @der2gamer
+            </p>
+        </div>
+
+        <!-- YouTube Video Bereich -->
+        <div class="youtube-section">
+            <h2>YouTube Video</h2>
+            <!-- Hier wird das YouTube-Video eingebettet -->
+            <div id="youtubeVideoEmbed" class="video-container">
+                <!-- Das Video wird hier von JavaScript eingefügt -->
+            </div>
+            <p style="margin-top: 25px; color: #bbb;">Möchtest du ein anderes Video sehen? Aktualisiere die `videoId` im JavaScript!</p>
+        </div>
+
+
+        <!-- Login / Registrierungsbereich -->
+        <div id="authSection" class="auth-section">
+            <div id="loginForm">
+                <h2>Login</h2>
+                <form class="auth-form" onsubmit="handleLogin(event)">
+                    <input type="text" id="loginUsername" placeholder="Benutzername" required>
+                    <input type="password" id="loginPassword" placeholder="Passwort" required>
+                    <button type="submit">Anmelden</button>
+                </form>
+                <p id="loginMessage" class="auth-message"></p>
+                <p class="toggle-auth" onclick="showRegisterForm()">Noch kein Konto? Registrieren</p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <h2>Registrieren</h2>
+                <form class="auth-form" onsubmit="handleRegister(event)">
+                    <input type="text" id="registerUsername" placeholder="Benutzername" required>
+                    <input type="password" id="registerPassword" placeholder="Passwort" required>
+                    <button type="submit">Registrieren</button>
+                </form>
+                <p id="registerMessage" class="auth-message"></p>
+                <p class="toggle-auth" onclick="showLoginForm()">Bereits ein Konto? Anmelden</p>
+            </div>
+        </div>
+
+        <!-- Angemeldet-Bereich (wird nach erfolgreichem Login angezeigt) -->
+        <div id="loggedInSection" class="logged-in-section" style="display: none;">
+            <h2>Willkommen, <span id="loggedInUsername"></span>!</h2>
+            <p>Du bist erfolgreich angemeldet.</p>
+            <button onclick="handleLogout()">Abmelden</button>
+        </div>
+
+    </div>
+
+    <script>
+        // CLIENT-SEITIGE SIMULATION EINER LOGIN-FUNKTION (NICHT FÜR PRODUKTIVZWEcke geeignet!)
+
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loggedInSection = document.getElementById('loggedInSection');
+        const authSection = document.getElementById('authSection');
+        const loggedInUsernameSpan = document.getElementById('loggedInUsername');
+        const youtubeVideoEmbed = document.getElementById('youtubeVideoEmbed');
+
+        // Funktion zum Einbetten des YouTube-Videos
+        function embedYouTubeVideo(videoId) {
+            if (!videoId) {
+                youtubeVideoEmbed.innerHTML = '<p style="color: #bbb;">Keine Video-ID angegeben. Bitte bearbeite das JavaScript.</p>';
+                return;
+            }
+            // Optional: Wenn du möchtest, dass es bei 10 Sekunden startet, kannst du "&start=10" hinzufügen.
+            // Beachte, dass "showinfo=0&rel=0" dazu da ist, ähnliche Videos am Ende auszublenden.
+            const iframe = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&showinfo=0&rel=0&start=10" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            youtubeVideoEmbed.innerHTML = iframe;
+        }
+
+        // Standard-Video-ID (ersetze dies durch die ID deines YouTube-Videos)
+        const defaultVideoId = 'YaGt9PgLJV4'; // Deine eingefügte Video-ID
+
+        function showLoginForm() {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+            document.getElementById('loginMessage').textContent = '';
+            document.getElementById('registerMessage').textContent = '';
+        }
+
+        function showRegisterForm() {
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+            document.getElementById('loginMessage').textContent = '';
+            document.getElementById('registerMessage').textContent = '';
+        }
+
+        // Überprüft beim Laden der Seite, ob ein Benutzer angemeldet ist
+        window.onload = function() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (currentUser) {
+                showLoggedInState(currentUser);
+            } else {
+                showLoginForm(); // Standardmäßig Login-Formular anzeigen
+                authSection.style.display = 'block'; // Sicherstellen, dass der Auth-Bereich sichtbar ist
+            }
+            embedYouTubeVideo(defaultVideoId); // Video beim Laden einbetten
+        }
+
+        function handleRegister(event) {
+            event.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            const messageElement = document.getElementById('registerMessage');
+
+            if (localStorage.getItem(username)) {
+                messageElement.textContent = 'Benutzername existiert bereits!';
+                messageElement.style.color = '#e74c3c'; // Rot für Fehler
+                return;
+            }
+
+            // Speichert Benutzername und Passwort (unsicher, nur für Demo!)
+            localStorage.setItem(username, password);
+            messageElement.textContent = 'Registrierung erfolgreich! Bitte melden Sie sich an.';
+            messageElement.style.color = '#2ecc71'; // Grün für Erfolg
+            document.getElementById('registerUsername').value = '';
+            document.getElementById('registerPassword').value = '';
+            setTimeout(showLoginForm, 2000); // Nach 2 Sekunden zum Login wechseln
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            const messageElement = document.getElementById('loginMessage');
+
+            const storedPassword = localStorage.getItem(username);
+
+            if (storedPassword && storedPassword === password) {
+                localStorage.setItem('currentUser', username); // Speichert den angemeldeten Benutzer
+                showLoggedInState(username);
+            } else {
+                messageElement.textContent = 'Ungültiger Benutzername oder Passwort.';
+                messageElement.style.color = '#e74c3c'; // Rot für Fehler
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('currentUser'); // Entfernt den angemeldeten Benutzer
+            loggedInSection.style.display = 'none';
+            authSection.style.display = 'block';
+            showLoginForm();
+        }
+
+        function showLoggedInState(username) {
+            authSection.style.display = 'none';
+            loggedInSection.style.display = 'block';
+            loggedInUsernameSpan.textContent = username;
+        }
+    </script>
+</body>
+</html>
