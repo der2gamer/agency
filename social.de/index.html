@@ -389,13 +389,14 @@
                 padding: 20px 10px;
             }
             .container, .info-text-section, .auth-section, .logged-in-section, .youtube-section {
-                padding: 30px 30px;
+                padding: 30px;
             }
             h1 {
                 font-size: 3em;
             }
             .subtitle {
                 font-size: 1.2em;
+                max-width: 95%;
             }
             .profile-picture {
                 width: 140px;
@@ -405,19 +406,15 @@
                 gap: 15px;
             }
             .social-button {
-                width: 60px; /* Zurück zu quadratischen Buttons */
+                min-width: 160px;
                 height: 60px;
-                font-size: 1.5em; /* Icongröße angepasst */
-                border-radius: 12px;
-                min-width: 0; /* Mindestbreite zurücksetzen */
-                padding: 0; /* Padding zurücksetzen */
-                gap: 0; /* Abstand zurücksetzen */
+                padding: 0 20px;
+                font-size: 1em;
+                gap: 10px;
             }
-            /* Text in den Buttons auf kleinen Bildschirmen ausblenden */
-            .social-button span {
-                display: none;
+            .social-button i {
+                font-size: 1.6em;
             }
-
             .info-text-section h2, .auth-section h2, .logged-in-section h2, .youtube-section h2 {
                 font-size: 2em;
             }
@@ -450,14 +447,18 @@
                 margin-bottom: 20px;
             }
             .social-buttons {
-                gap: 10px;
+                flex-direction: column; /* Buttons untereinander anordnen */
+                align-items: center; /* Zentriert die Buttons in der Spalte */
+                gap: 12px;
             }
             .social-button {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3em;
-                border-radius: 10px;
+                width: 100%;
+                max-width: 280px; /* Maximale Breite für die Buttons */
+                height: 55px;
+                font-size: 1em;
+                border-radius: 12px;
             }
+
             .container, .info-text-section, .auth-section, .logged-in-section, .youtube-section {
                 padding: 25px 20px;
             }
@@ -519,18 +520,18 @@
         <div class="info-text-section">
             <h2>Über @der2gamer</h2>
             <p>
-                Hallo Leute, hier ist @der2gamer! 
+                Hallo Leute, hier ist @der2gamer!
                 Ich möchte euch kurz darüber informieren, dass ich insgesamt drei Kanäle betreibe.
                 Jeder Kanal hat sein eigenes spezielles Content-Format, also solltet ihr unbedingt
-                alle drei abchecken, damit ihr kein Video verpasst.  
+                alle drei abchecken, damit ihr kein Video verpasst.
             </p>
             <p>
                 Es ist super wichtig, dass ihr regelmäßig vorbeischaut und die Kanäle abonniert,
-                damit ihr immer auf dem neuesten Stand seid. Eure Unterstützung bedeutet mir viel, 
-                und nur so kann ich weiterhin coole Inhalte für euch produzieren. 
+                damit ihr immer auf dem neuesten Stand seid. Eure Unterstützung bedeutet mir viel,
+                und nur so kann ich weiterhin coole Inhalte für euch produzieren.
             </p>
             <p>
-                Vielen Dank fürs Reinschauen und viel Spaß auf meinen Kanälen!  
+                Vielen Dank fürs Reinschauen und viel Spaß auf meinen Kanälen!
                 Euer @der2gamer
             </p>
         </div>
@@ -599,10 +600,10 @@
             // Optional: Wenn du möchtest, dass es bei 10 Sekunden startet, kannst du "&start=10" hinzufügen.
             // Beachte, dass "showinfo=0&rel=0" dazu da ist, ähnliche Videos am Ende auszublenden.
             const iframe = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&showinfo=0&rel=0&start=10" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}?autoplay=0&controls=1&showinfo=0&rel=0&start=10"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen>
                 </iframe>
             `;
